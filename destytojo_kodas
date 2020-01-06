@@ -1,0 +1,91 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+ ifstream in("data.txt");
+ ofstream out("rez123data.txt");
+ struct komanda{
+  string vardas;
+  int taskai;
+  int amzius;
+ };
+   void kiekis(int &kiek, string &pavadinimas);
+   void skaitoKomanda(komanda Grupe[], int kiek);
+   void vyriausias(komanda Grupe[], int kiek, int &vyrAmzius);
+   void vyrKomanda(komanda Grupe[], int kiek, int vyrAmzius,
+                 komanda vyrGrupe[], int &vyrKiek);
+   void isvedimas(string pavadinimas, komanda Grupe[], int kiek);
+int main()
+{
+    int kiek1, kiek2;
+    string pavadinimas1, pavadinimas2;
+    kiekis (kiek1, pavadinimas1);
+    komanda PirmaKomanda[kiek1];
+    skaitoKomanda(PirmaKomanda, kiek1);
+    kiekis (kiek2, pavadinimas2);
+    komanda AntraKomanda[kiek2];
+    skaitoKomanda(AntraKomanda, kiek2);
+    int vyrAmzius1, vyrAmzius2;
+    vyriausias(PirmaKomanda, kiek1, vyrAmzius1);
+    vyriausias(AntraKomanda, kiek2, vyrAmzius2);
+    komanda vyrPirmaKomanda[kiek1], vyrAntraKomanda[kiek2];
+    int vyrKiek1, vyrKiek2;
+    vyrKomanda(PirmaKomanda, kiek1, vyrAmzius1, vyrPirmaKomanda,vyrKiek1);
+    vyrKomanda(AntraKomanda, kiek2, vyrAmzius2, vyrAntraKomanda,vyrKiek2);
+    out<<"Vyriausi"<<endl;
+    isvedimas(pavadinimas1, vyrPirmaKomanda,vyrKiek1);
+    isvedimas(pavadinimas2, vyrAntraKomanda,vyrKiek2);
+ 
+    in.close();
+    out.close();
+    return 0;
+}
+ 
+ 
+ void kiekis(int &kiek, string &pavadinimas)
+ {
+     in>>pavadinimas;
+     in>>kiek;
+ }
+ 
+ void skaitoKomanda(komanda Grupe[], int kiek)
+ {
+     for(int i=0; i<kiek; i++){
+        in>>Grupe[i].vardas>>Grupe[i].taskai>>Grupe[i].amzius;
+ 
+     }
+ 
+ }
+ 
+ void vyriausias(komanda Grupe[], int kiek, int &vyrAmzius)
+ {
+     vyrAmzius=Grupe[0].amzius;
+     for(int i=0; i<kiek; i++){
+        if (Grupe[i].amzius>vyrAmzius) {vyrAmzius = Grupe[i].amzius;}
+ 
+ }
+ }
+ 
+ void vyrKomanda(komanda Grupe[], int kiek, int vyrAmzius,
+                 komanda vyrGrupe[], int &vyrKiek)
+{
+    vyrKiek=0;
+    for(int i=0; i<kiek; i++){
+        if(Grupe[i].amzius==vyrAmzius){
+            vyrGrupe[vyrKiek].vardas=Grupe[i].vardas;
+            vyrGrupe[vyrKiek].amzius=Grupe[i].amzius;
+            vyrGrupe[vyrKiek].taskai=Grupe[i].taskai;
+            vyrKiek++;
+        }
+    }
+}
+ 
+ 
+void isvedimas(string pavadinimas, komanda Grupe[], int kiek)
+{
+    out<<pavadinimas<<endl;
+    for(int i=0; i<kiek; i++){
+        out<<Grupe[i].vardas<<endl;
+ 
+    }
+ 
+}
