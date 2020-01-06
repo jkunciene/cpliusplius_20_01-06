@@ -1,0 +1,17 @@
+Dinozaurai
+5
+Petras 36 15
+Jurgis 42 13
+Algis 35 18
+Robertas 43 9
+Kasparas 35 18
+Kentaurai
+5
+Alfonsas 49 9
+Antanas 37 18
+Pranas 47 12
+Jonas 53 18
+Simas 37 16
+
+
+
